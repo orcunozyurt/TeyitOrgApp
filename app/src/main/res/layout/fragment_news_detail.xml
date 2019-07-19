@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        >
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+                name="viewmodel"
+                type="com.nerdz.teyitorgapp.viewmodel.NewsDetailViewModel" />
+        <variable
+                name="newsItem"
+                type="com.nerdz.teyitorgapp.model.Model.NewsSingle"/>
+    </data>
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:animateLayoutChanges="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/imageCard"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardElevation="@dimen/_5dp"
+                    android:layout_margin="@dimen/_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="@{safeUnbox(viewmodel.dataLoading) | newsItem.images.empty ? View.GONE : View.VISIBLE}">
+
+                <com.smarteist.autoimageslider.SliderView
+                        android:id="@+id/imageSlider"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        app:sliderAnimationDuration="600"
+                        app:sliderAutoCycleDirection="back_and_forth"
+                        app:sliderAutoCycleEnabled="true"
+                        app:sliderCircularHandlerEnabled="true"
+                        app:sliderIndicatorAnimationDuration="600"
+                        app:sliderIndicatorGravity="center_horizontal|bottom"
+                        app:sliderIndicatorMargin="15dp"
+                        app:sliderIndicatorOrientation="horizontal"
+                        app:sliderIndicatorPadding="3dp"
+                        app:sliderIndicatorRadius="2dp"
+                        app:sliderIndicatorSelectedColor="#F1DB4B"
+                        app:sliderIndicatorUnselectedColor="#FFF"
+                        app:sliderScrollTimeInSec="5"
+                        app:sliderStartAutoCycle="true" />
+
+            </androidx.cardview.widget.CardView>
+
+            <com.airbnb.lottie.LottieAnimationView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/animationloading"
+                    android:visibility="@{safeUnbox(viewmodel.dataLoading) ? View.VISIBLE : View.GONE}"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="No news to display"
+                    android:textSize="@dimen/_18sp"
+                    android:visibility="@{safeUnbox(viewmodel.empty) ? View.VISIBLE : View.GONE}" />
+
+            <androidx.cardview.widget.CardView
+                    android:id="@+id/claimCardView"
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:layout_margin="@dimen/_10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardElevation="@dimen/_5dp"
+                    android:layout_below="@+id/imageCard"
+                    android:visibility='@{safeUnbox(viewmodel.dataLoading) | newsItem.claim.empty ? View.GONE : View.VISIBLE}'>
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/_5dp">
+
+                    <TextView
+                            android:id="@+id/factView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="@{newsItem.claim}"/>
+
+                    <TextView
+                            android:layout_below="@+id/factView"
+                            android:layout_alignParentBottom="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="@dimen/_5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{safeUnbox(newsItem.proven) ? @string/correct : @string/wrong}"
+                    />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                    android:layout_below="@id/claimCardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_15dp"
+                    android:layout_margin="@dimen/_10dp"
+                    app:cardCornerRadius="@dimen/_5dp"
+                    app:cardElevation="@dimen/_5dp"
+                    android:visibility="@{safeUnbox(viewmodel.dataLoading) ? View.GONE : View.VISIBLE}"
+            >
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/_10dp"
+                        android:orientation="vertical">
+
+                    <TextView
+                            android:id="@+id/titleView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:layout_marginTop="@dimen/_5dp"
+                            android:textStyle="bold"
+                            android:text="@{newsItem.title}"/>
+
+                    <TextView
+                            android:id="@+id/descriptionView"
+                            android:layout_gravity="center"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_15dp"
+                            android:text="@{newsItem.content}"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+</layout>
