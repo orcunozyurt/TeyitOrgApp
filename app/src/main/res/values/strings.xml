@@ -1,8 +1,5 @@
 <resources>
-    <string name="app_name">TeyitOrgApp</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Teyit</string>
     <string name="correct">Dogru &#x1F44D;</string>
     <string name="wrong">Yanlis &#x1F44E;</string>
 </resources>

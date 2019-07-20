@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion 28
@@ -60,10 +61,11 @@ dependencies {
 
     // Databinding compiler
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt 'com.android.databinding:compiler:3.4.1'
+
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.0.1'
-
-    kapt 'com.android.databinding:compiler:3.4.1'
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
