@@ -32,7 +32,7 @@ class SliderAdapter() : SliderViewAdapter<SliderAdapter.SliderViewHolder>() {
 
     class SliderViewHolder(itemView: View) : SliderViewAdapter.ViewHolder(itemView) {
         val avatarImage = itemView.iv_auto_image_slider
-        fun setup(itemData: String) {
+        fun setup(itemData: String?) {
             Picasso.get().load(itemData).into(avatarImage)
         }
     }

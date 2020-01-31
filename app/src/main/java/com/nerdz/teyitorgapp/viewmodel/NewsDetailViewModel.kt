@@ -13,7 +13,7 @@ class NewsDetailViewModel : BaseViewModel() {
         NewsRepository.getInstance().getNewsDetail(url_slug) { isSuccess, response ->
             dataLoading.value = false
             if (isSuccess) {
-                Log.d("fetchNewsDetail", response.toString())
+                //Log.d("fetchNewsDetail", response.toString())
                 newsDetailLive.value = response
                 empty.value = false
             } else {
