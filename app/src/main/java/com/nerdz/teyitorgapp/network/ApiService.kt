@@ -6,8 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
-    @GET("/all")
-    fun getNews(): Call<List<Model.NewsOverview>>
+    @GET("/home-page")
+    fun getNews(): Call<Model.NewsOverview>
 
     @GET("/fact/{url_slug}")
     fun getNewsDetail(@Path("url_slug") url_slug : String): Call<Model.NewsSingle>

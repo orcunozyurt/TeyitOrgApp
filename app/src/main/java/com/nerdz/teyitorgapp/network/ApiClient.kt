@@ -2,6 +2,7 @@ package com.nerdz.teyitorgapp.network
 
 import com.google.gson.GsonBuilder
 import com.nerdz.teyitorgapp.utils.Constants.Companion.BASE_URL
+import com.nerdz.teyitorgapp.utils.Constants.Companion.BASE_URL_V2
 import com.nerdz.teyitorgapp.utils.Constants.Companion.DEBUG
 import com.nerdz.teyitorgapp.utils.Constants.Companion.REQUEST_TIMEOUT_DURATION
 import okhttp3.Interceptor
@@ -14,6 +15,18 @@ import java.util.concurrent.TimeUnit
 object ApiClient {
 
     val instance: ApiService = Retrofit.Builder().run {
+        val gson = GsonBuilder()
+            .enableComplexMapKeySerialization()
+            .setPrettyPrinting()
+            .create()
+
+        baseUrl(BASE_URL_V2)
+        addConverterFactory(GsonConverterFactory.create(gson))
+        client(createRequestInterceptorClient())
+        build()
+    }.create(ApiService::class.java)
+
+    val instance_TYT: ApiService = Retrofit.Builder().run {
         val gson = GsonBuilder()
             .enableComplexMapKeySerialization()
             .setPrettyPrinting()

@@ -37,7 +37,7 @@ class NewsDetailFragment : Fragment() {
 
     private fun setupObservers() {
         viewDataBinding.viewmodel?.newsDetailLive?.observe(viewLifecycleOwner, Observer {
-            adapter.updateNewsList(it.images)
+            adapter.updateNewsList(mutableListOf(it.featured_image))
             viewDataBinding.setVariable(BR.newsItem, it)
             viewDataBinding.executePendingBindings()
         })

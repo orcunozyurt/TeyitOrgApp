@@ -7,13 +7,13 @@ import retrofit2.Response
 
 class NewsRepository {
 
-    fun getNewsList(onResult: (isSuccess: Boolean, response: List<Model.NewsOverview>?) -> Unit) {
-        ApiClient.instance.getNews().enqueue(object : Callback<List<Model.NewsOverview>> {
-            override fun onFailure(call: Call<List<Model.NewsOverview>>, t: Throwable) {
+    fun getNewsList(onResult: (isSuccess: Boolean, response: Model.NewsOverview?) -> Unit) {
+        ApiClient.instance.getNews().enqueue(object : Callback<Model.NewsOverview> {
+            override fun onFailure(call: Call<Model.NewsOverview>, t: Throwable) {
                 onResult(false, null)
             }
 
-            override fun onResponse(call: Call<List<Model.NewsOverview>>, response: Response<List<Model.NewsOverview>>) {
+            override fun onResponse(call: Call<Model.NewsOverview>, response: Response<Model.NewsOverview>?) {
                 if (response != null && response.isSuccessful)
                     onResult(true, response.body()!!)
                 else
@@ -24,7 +24,7 @@ class NewsRepository {
     }
 
     fun getNewsDetail(url_slug: String, onResult: (isSuccess: Boolean, response: Model.NewsSingle?) -> Unit) {
-        ApiClient.instance.getNewsDetail(url_slug).enqueue(object : Callback<Model.NewsSingle> {
+        ApiClient.instance_TYT.getNewsDetail(url_slug).enqueue(object : Callback<Model.NewsSingle> {
             override fun onFailure(call: Call<Model.NewsSingle>, t: Throwable) {
                 onResult(false, null)
             }

@@ -32,7 +32,7 @@
                     android:layout_margin="@dimen/_10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="@{safeUnbox(viewmodel.dataLoading) | newsItem.images.empty ? View.GONE : View.VISIBLE}">
+                    android:visibility="@{safeUnbox(viewmodel.dataLoading) | newsItem.featured_image == null ? View.GONE : View.VISIBLE}">
 
                 <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/imageSlider"
@@ -101,7 +101,7 @@
                             android:layout_marginTop="@dimen/_5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@{safeUnbox(newsItem.proven) ? @string/correct : @string/wrong}"
+                            android:text="@{newsItem.correctness}"
                     />
 
                 </RelativeLayout>
@@ -140,7 +140,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_15dp"
-                            android:text="@{newsItem.content}"/>
+                            android:text="@{newsItem.content.toString()}"/>
 
                 </LinearLayout>
 

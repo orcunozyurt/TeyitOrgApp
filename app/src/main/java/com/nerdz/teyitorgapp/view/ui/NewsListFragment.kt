@@ -53,7 +53,7 @@ class NewsListFragment : Fragment() {
     private fun  setupAdapter() {
         val viewModel = viewDataBinding.viewmodel
         if (viewModel != null) {
-            adapter = NewsListAdapter(viewDataBinding.viewmodel!!)
+            adapter = NewsListAdapter()
             val layoutManager = LinearLayoutManager(activity)
             news_list_rv.layoutManager = layoutManager
             news_list_rv.adapter = adapter
